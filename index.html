@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Intro to Scala</title>
+
+		<meta name="description" content="">
+		<meta name="author" content="James Ward">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+        
+        <style type="text/css">
+            .reveal .controls {
+                bottom: auto;
+                top: 0px;
+            }
+        </style>
+
+	</head>
+
+	<body>
+    
+        <aside style="display: block; position: fixed; bottom: 5px; left: 10px; z-index: 30;">
+            <a href="http://typesafe.com"><img src="assets/logo.png"></a>
+        </aside>
+
+        <aside style="display: block; position: fixed; bottom: 10px; right: 10px; z-index: 30;">
+            <a href="https://twitter.com/_JamesWard" class="twitter-follow-button" data-show-count="false" data-lang="en" data-size="large">Follow @_JamesWard</a>
+            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+        </aside>
+
+		<div class="reveal">
+
+			<div class="slides">
+            
+                <section>
+                    <h2>Intro to Scala</h2>
+                    <p>
+                        <small><a href="http://www.jamesward.com">James Ward</a> ~ <a href="http://twitter.com/_jamesward">@_JamesWard</a></small>
+                    </p>
+                </section>
+                
+                <section>
+                    <section>
+                        <h3>Get Started with Typesafe Activator</h3>
+                        
+                        <ol>
+                            <li>Download Activator: <a href="http://typesafe.com/platform/getstarted">http://typesafe.com/platform/getstarted</a></li>
+                            <li>Extract &amp; launch Activator:<br/><pre><code>activator new</code></pre> (or launch the UI from your file browser)</li>
+                            <li>Create a new app with the <em>Hello, Scala</em> template</li>
+                        </ol>
+                    </section>
+                    
+                    <section>
+                        <h3>Run the app once:</h3>
+                        <pre><code>activator run</code></pre>
+                        <h3>Run the app continuously:</h3>
+                        <pre><code>activator ~run</code></pre>
+                        <h3>Launch the Scala REPL:</h3>
+                        <pre><code>activator console</code></pre>
+                        <h3>Run the tests continuously:</h3>
+                        <pre><code>activator ~test</code></pre>
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h3>Immutability</h3>
+                        <h4>Non-side-effecting and concurrency friendly</h4>
+                        <pre><code>val foo: String = "asdf"</code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Type Inference</h3>
+                        <h4>Type Safety with less Typing</h4>
+                        <pre><code>case class Foo(name: String)</code></pre>
+                        <ul>
+                            <li>Concise Syntax</li>
+                            <li>Built-in toString, equals, hash-code, extractor, creator, copy</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <pre><code>val foo = "asdf"</code></pre>
+                        <pre><code>val listOfInt: List[Int] = List(1,2,3)</code></pre>
+                    </section>
+                </section>
+                
+                <section>
+                    <section>
+                        <h3>Case Classes</h3>
+                        <h4>Value Objects Done Right</h4>
+                        <pre><code>case class Foo(name: String)</code></pre>
+                        <ul>
+                            <li>Concise Syntax</li>
+                            <li>Built-in toString, equals, hash-code, extractor, creator, copy</li>
+                        </ul>
+                    </section>
+                    <section>
+                        <pre><code>val foo = Foo("asdf")
+val foo1 = Foo.apply("asdf")
+val foo2 = new Foo("asdf")
+val bar = foo.copy("zxvc")
+</code></pre>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h3>Optional Values</h3>
+                        <h4>Say Goodbye to Null Pointer Exceptions</h4>
+                        <pre><code>val asdf: Option[String] = Some("asdf")</code></pre>
+                        <pre><code>val notta: Option[String] = None</code></pre>
+                    </section>
+                </section>
+                
+                <section>
+                    <h3>Higher Order Functions</h3>
+                    <h4>Functions are a thing</h4>
+                    <pre><code>def stringLength(s: String): Int = s.length</code></pre>
+                    <h4>Functions can take other functions as params</h4>
+                    <pre><code>def stringTransformer(s: String, f: String => Int): Int = f(s)</code></pre>
+                    <h4>The map() function transforms each item in a container</h4>
+                    <pre><code>List("a","bb","ccc").map(stringLength)</code></pre>
+                    <h4>Anonymous functions</h4>
+                    <pre><code>List("a","bb","ccc").map(s => s.length)</code></pre>
+                </section>
+
+                <section>
+                    <h3>Learn More</h3>
+                    <a href="http://www.typesafe.com/platform/getstarted"><img src="http://dommkopfq6m1m.cloudfront.net/assets/static/7f8ebf4d898f1c96de2c3ddd8a310258d82cad60/images/getstarted/all-create.png" height="288"></a>
+                    <a href="http://www.atomicscala.com"><img src="http://www.atomicscala.com/wp-content/uploads/2012/07/Atomic_Scala_Social_Media_Icon.png"></a>
+                </section>
+                
+			</div>
+
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
